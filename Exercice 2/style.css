@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.boxes {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    width: fit-content;
+    margin: 100px;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    background-color: rgba(67, 118, 67, 0.576);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: all 0.8s ease-in-out;
+    cursor: pointer;
+}
+
+.boxes .clicked {
+    transform: rotate(360deg) scale(0.9);
+    background-color: rgba(255, 0, 0, 0.521);
+}

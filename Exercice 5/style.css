@@ -1,0 +1,39 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+main {
+    background-image: url(valut.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgba(164, 163, 163, 0.332);
+    width: 350px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+
+}
+
+h3, h5 {
+    color: white;
+}
+
+input {
+    text-align: end;
+    height: 30px;
+    padding: 3px;
+    width: 130px;
+}

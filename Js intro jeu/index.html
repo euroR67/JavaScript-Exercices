@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="board"></div>
+    <div id="timer">Temps restant : <span id="time">60</span> secondes</div>
+
+    <script>
+
+        function shuffleChildren(parent){
+            let children = parent.children;
+            let i = children.length, k, temp;
+            while(--i > 0){
+                k = Math.floor(Math.random() * (i+1));
+                temp = children[k];
+                children[k], children[i];
+                parent.appendChild(temp);
+            }
+        }
+
+        function showReaction(type, clickedBox){
+            clickedBox.classList.add(type)
+            if(type !== "success"){
+                setTimeout(function(){
+                    clickedBox.classList.remove(type)
+                }, 800)
+            }
+        }
+
+        const box = document.createElement("div")
+        box.classList.add("box")
+
+        const board = document.querySelector("#board")
+        const timerElement = document.querySelector("#time");
+
+        let nb = 1
+        let timeLeft = 60;
+
+        const timer = setInterval(function () {
+            timeLeft--;
+            timerElement.innerText = timeLeft;
+
+            if (timeLeft === 0) {
+                clearInterval(timer);
+                endGame();
+            }
+        }, 1000);
+
+        function endGame() {
+            // Gérez la fin du jeu ici
+            alert("Temps écoulé !");
+        }
+
+        for (let i = 1; i < 11; i++) {
+            let newbox = box.cloneNode();
+            newbox.innerText = i
+            board.appendChild(newbox)
+
+            newbox.addEventListener("click", function(){
+                
+                if(i == nb){
+                    newbox.classList.add("box-valid")
+                    if(nb == board.children.length){
+                        board.querySelectorAll(".box").forEach(function(box){
+                            showReaction("success", box)
+                        });
+                        clearInterval(timer); // Arrêter le timer lorsque toutes les boîtes sont validées
+                        endGame();
+                    }
+                    nb++
+                }
+
+                else if(i > nb){
+                    showReaction("error", newbox)
+                    nb = 1
+                    board.querySelectorAll(".box-valid").forEach(function(validBox){
+                        validBox.classList.remove("box-valid")
+                    })
+                }
+
+                else{
+                    showReaction("notice", newbox)
+                }
+
+            })
+        }
+
+        shuffleChildren(board)
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Exercice JavaScript 5</title>
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <h3>Valeur en euros</h3>
+            <input type="text" id="inputValue" placeholder="Enter Value">
+        </div>
+    </main>
+
+    <script>
+
+        const container = document.querySelector(".container")
+        const resultat = document.createElement("h5")
+        const valueInput = document.getElementById("inputValue")
+        const tauxDeConversion = 6.55957;
+
+        container.appendChild(resultat)
+        resultat.innerText = "Entré une valeur"
+
+        valueInput.addEventListener("input", function() {
+            const valeurEntree = parseFloat(valueInput.value);
+            if(!isNaN(valeurEntree)) {
+                const valeurEnFrancs = valeurEntree * tauxDeConversion
+                const valeurEnFrancsArrondie = Math.ceil(valeurEnFrancs * 100) / 100;
+                const valeurEnFrancsArrondieFixe = valeurEnFrancsArrondie.toFixed(2);
+                resultat.innerText = valeurEnFrancsArrondieFixe + " francs"
+            } else {
+                resultat.innerText = "Valeur invalide";
+            }
+            console.log(valeurEntree)
+        })
+
+        
+
+    </script>
+
+</body>
+</html>

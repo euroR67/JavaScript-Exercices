@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.boxes {
+    display: grid;
+    grid-template-columns: repeat(15,15fr);
+    gap: 5px;
+    width: fit-content;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice JavaScript 3</title>
+</head>
+<body>
+
+    <main>
+        <div class="boxes"></div>
+    </main>
+
+    <script>
+
+        // On crée une div avec la classe box
+        const box = document.createElement("div")
+        const turn = document.createElement("h3")
+        // On lui ajoute la classe box
+        box.classList.add("box")
+        turn.classList.add("turn")
+
+        // On stock la div boxes dans une variable
+        const boxes = document.querySelector(".boxes")
+        const main = document.querySelector("main")
+        
+        main.appendChild(turn)
+        turn.innerText = "C'est au tour de ❌"
+
+        // On crée une boucle qui va créer 4 divs avec la classe box
+        for(let i = 1; i <= 9; i++) {
+            // On clone la div box
+            let newbox = box.cloneNode()
+            // On ajoute les nouvelles divs dans la div parent boxes
+            boxes.appendChild(newbox)
+        }
+
+        let currentPlayer = "❌"
+
+        // Fonction de gestion de l'événement de clic
+        function handleBoxClick(event) {
+            const clickedBox = event.target
+
+            //  vérification si la case est déjà remplie est utilisé pour sortir immédiatement de la fonction 
+            if (clickedBox.textContent !== "") {
+                return
+            }
+
+            // Mettre la valeur du joueur actif (X ou O) dans la case
+            clickedBox.textContent = currentPlayer
+
+            // Alterner le joueur actif
+            currentPlayer = currentPlayer === "❌" ? "🟢" : "❌"
+
+            // Mettre à jour le contenu de la balise h3 avec le joueur actif
+            turn.innerText = "C'est au tour de " + currentPlayer
+            
+            // Vérification si toutes les cases sont remplies
+            let isGridFull = Array.from(allBoxes).every(function(box) {
+                return box.textContent !== "";
+            });
+
+
+            if (isGridFull) {
+                turn.innerText = "Partie terminée"
+            } else {
+                // Mettre à jour le contenu de la balise h3 avec le joueur actif
+                turn.innerText = "C'est au tour de " + currentPlayer
+            }
+            
+        }
+
+        // Ajouter un gestionnaire d'événements de clic à chaque case
+        const allBoxes = document.querySelectorAll(".box")
+        allBoxes.forEach(function(box) {
+            box.addEventListener("click", handleBoxClick);
+        });
+
+    </script>
+</body>
+</html>

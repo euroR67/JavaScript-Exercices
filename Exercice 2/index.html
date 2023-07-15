@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices JavaScript 2</title>
+</head>
+<body>
+
+    <div class="boxes"></div>
+
+    <script>
+
+        // On crée une div avec la classe box
+        const box = document.createElement("div")
+        // On lui ajoute la classe box
+        box.classList.add("box")
+
+        // On stock la div boxes dans une variable
+        const boxes = document.querySelector(".boxes")
+        
+        // On crée une boucle qui va créer 4 divs avec la classe box
+        for(let i = 1; i <= 4; i++) {
+            // On clone la div box
+            let newbox = box.cloneNode()
+            // On donne un numéro à chaque div
+            newbox.innerText = i
+            // On ajoute les nouvelles divs dans la div parent boxes
+            boxes.appendChild(newbox)
+
+            // On ajoute un évènement click sur chaque div
+            newbox.addEventListener("click", function(){
+                // Ont vérifie si lorsque l'ont clique sur une newbox la box contient la class "clicked" ou non,
+                // Si c'est le cas alors on retire la class sinon on l'ajoute
+                if(newbox.classList.contains("clicked")) {
+                    newbox.classList.remove("clicked");
+                } else {
+                    newbox.classList.add("clicked");
+                }
+            })
+        }
+
+        
+    </script>
+
+</body>
+</html>

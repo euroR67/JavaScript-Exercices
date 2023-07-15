@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices JavaScript 1</title>
+</head>
+<body>
+
+    <div class="my-div" onclick="showCSSRules(this)">Text</div>
+
+    <script>
+
+    function showCSSRules(element) {
+        let rulesArray = [];
+        let stylesheets = document.styleSheets;
+        for (let i = 0; i < stylesheets.length; i++) {
+            let stylesheet = stylesheets[i];
+            let rules = stylesheet.rules || stylesheet.cssRules;
+            for (let j = 0; j < rules.length; j++) {
+                let rule = rules[j];
+                if (rule.selectorText === '.my-div') {
+                    let cssText = rule.cssText || rule.style.cssText;
+                    rulesArray.push(cssText);
+                }
+            }
+        }
+        alert("Class : " + rulesArray.join('\n'));
+    }
+
+
+
+    </script>
+
+</body>
+</html>
